@@ -32,7 +32,7 @@ def dologin(request):
     user = authenticate(username=request.POST['user'], password=request.POST['password'])
     if user is not None:
         login(request, user)
-        return redirect('/dashboard/')
+        return redirect('/createVaga/')
     else:
         data['msg'] = 'Usuário ou Senha inválidos!'
         data['class'] = 'alert-danger'
@@ -51,4 +51,7 @@ def changePassword(request):
     user.save()
     logout(request)
     return redirect('/painel/')
+
+def createVaga(request):
+    return render(request, 'createVaga.html')
 

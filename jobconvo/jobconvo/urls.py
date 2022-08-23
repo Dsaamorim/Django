@@ -1,11 +1,10 @@
 from django.contrib import admin
 from django.urls import path
-from jobconvo.views import home,create,store, painel, dologin, dashboard,logouts,changePassword
-
+from jobconvo.views import home, create, store, painel, dologin, dashboard, logouts, changePassword, createVaga
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',home),
+    path('home/',home),
     path('create/',create),
     path('store/',store),
     path('painel/',painel),
@@ -13,4 +12,5 @@ urlpatterns = [
     path('dashboard/',dashboard),
     path('logouts/',logouts),
     path('password/',changePassword),
+    path('createVaga/',createVaga),
 ]
