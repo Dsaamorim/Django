@@ -1,7 +1,6 @@
 from pathlib import Path
 
 import os
-import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -68,16 +67,16 @@ WSGI_APPLICATION = 'jobconvo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'heroku_5021a4204cd1836',
-        'HOST': 'us-cdbr-east-06.cleardb.net',
-        'USER': 'bdb55077bae094',
-        'PASSWORD': '0a5c966d',
+        'NAME': 'sistema',
+        'HOST': 'localhost',
+        'USER': 'root',
+        'PASSWORD': '',
         'PORT': '3306',
-        'OPTIONS': {
-            'init_command': 'SET default_storage_engine=InnoDB'     
+        'OPTIONS' : {
+            'init_command': 'SET default_storage_engine=InnoDB'
+            }
         }
     }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -116,7 +115,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIR = ('/static/')
-django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

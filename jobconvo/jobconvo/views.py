@@ -53,5 +53,8 @@ def changePassword(request):
     return redirect('/painel/')
 
 def createVaga(request):
+    data = {}
+    data['msg'] = 'Vaga cadastrada com sucesso!'
+    data['class'] = 'alert-success'
     return render(request, 'createVaga.html')
 

@@ -3,9 +3,14 @@
 {% block content %}
 
 
-<form name="form-users" id="formUsers" method="post" action="/store/">
+<form name="form-vagaDeEmprego" id="vagaDeEmprego" method="post" action="/createVaga/">
     <div class="col-6 mt-4 m-auto">
-
+        {% if msg %}
+        <div class="alert {{class}}">
+            {{msg}}    
+        </div>
+        {% endif %}
+        
         {% csrf_token %}
         <input class="form-control mt-4" type="text" name="nameJob" id="nameJob" placeholder="Nome da vaga de emprego:">
         <br>
