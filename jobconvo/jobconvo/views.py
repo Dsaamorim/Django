@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+from jobconvo.forms import createVagaForm
+from jobconvo.models import vagaDeEmprego
 
 
 def home(request):
@@ -53,8 +55,18 @@ def changePassword(request):
     return redirect('/painel/')
 
 def createVaga(request):
+    if request.method == "POST":
+        form = createVagaForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            pc = vagaDeEmprego(
+                nameJob = cd['nameJob'],
+                cbFaixaSalarial = cd['cbFaixaSalarial'],
+                cbEscolaridade = cd['cbEscolaridade']
+                )
+            pc.save()
     data = {}
     data['msg'] = 'Vaga cadastrada com sucesso!'
     data['class'] = 'alert-success'
     return render(request, 'createVaga.html')
-
+            
