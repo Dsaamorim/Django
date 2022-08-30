@@ -1,4 +1,5 @@
 from django.db import models
+import requests
 
 #class vagasDeEmprego(models.Model):
 
@@ -20,19 +21,23 @@ from django.db import models
 
 #objetos = models.Manager()
 
-class vagaDeEmprego(models.Model):
-    FAIXA_SALARIAL = [
-    ('R$1.000', 'R$1.000 a R$2.000'),
-    ('R$2.000 a R$3.000', 'Acima de R$3.000'),
-    ]
-    ESCOLARIDADE = [ ('Ensino fundamental', 'Ensino médio', 'Tecnólogo'),
-    ('Ensino Superior', 'Pós/MBA/Mestrado', 'Doutorado'),
-    ]
+#class vagaDeEmprego(models.Model):
+    #cbFaixaSalarial = [
+    #('R$1.000', 'R$1.000 a R$2.000'),
+    #('R$2.000 a R$3.000', 'Acima de R$3.000'),
+    #]
+    #cbEscolaridade = [ 
+    #('Ensino fundamental', 'Ensino médio', 'Tecnólogo'),
+    #('Ensino Superior', 'Pós/MBA/Mestrado', 'Doutorado'),
+    #]
 
 class vagaDeEmprego(models.Model):
-    nameJob = models.CharField(max_length=100)
-    cbFaixaSalarial = models.CharField(max_length=4)
-    cbEscolaridade = models.CharField(max_length=4)
+    nameJob = models.CharField(max_length=200)
+    cbFaixaSalarial = models.CharField(max_length=200)
+    cbEscolaridade = models.CharField(max_length=200)
 
 def __str__(self):
-    return self.nameJob
+    return self.nameJob 
+
+
+
