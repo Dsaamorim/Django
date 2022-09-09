@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'jobconvo'
+    'jobconvo',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -73,7 +74,8 @@ DATABASES = {
         'PASSWORD': '',
         'PORT': '3306',
         'OPTIONS' : {
-            'init_command': 'SET default_storage_engine=InnoDB'
+            'init_command': 'SET default_storage_engine=InnoDB',
+            'sql_mode': 'traditional',
             }
         }
     }

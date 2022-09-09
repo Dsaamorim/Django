@@ -1,18 +1,20 @@
 from django.contrib import admin
 from django.urls import path
 from jobconvo.views import lista_vagas
-from jobconvo.views import home, create, store, painel, dologin, dashboard, logouts, changePassword, createVaga, lista_vagas
+from jobconvo.views import home, create, store, painel, dologin, dashboard, logouts, changePassword, createVaga, createVagaSalarial, lista_vagas 
+from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/',home),
-    path('create/',create),
-    path('store/',store),
-    path('painel/',painel),
-    path('dologin/',dologin),
-    path('dashboard/',dashboard),
-    path('logouts/',logouts),
-    path('password/',changePassword),
-    path('createVaga/',createVaga),
-    path('lista_vagas/',lista_vagas)
+    path('home/',home, name = 'home'),
+    path('create/',create, name = 'create'),
+    path('store/',store, name = 'store'),
+    path('painel/',painel, name = 'painel'),
+    path('dologin/',dologin, name = 'dologin'),
+    path('dashboard/',dashboard, name = 'dashboard'),
+    path('logouts/',logouts, name = 'logouts'),
+    path('password/',changePassword, name = 'password'),
+    path('createVaga/',createVaga, name = 'createVaga'),
+    path('lista_vagas/',lista_vagas, name = 'lista_vagas'),
+    path('createVagaSalarial/',createVagaSalarial, name = 'createVagaSalarial'),
 ]

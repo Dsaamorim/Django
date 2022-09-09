@@ -1,38 +1,25 @@
 {% extends 'main.html' %}
 
+{% load widget_tweaks %}
+
 {% block content %}
 
-
-<form method="POST" enctype="multipart/form-data" name="createVagaForm" id="vagaDeEmprego" action="/lista_vagas/">
-    {% csrf_token %}
-    <div class="col-6 mt-4 m-auto">
-        {% if msg %}
-        <div class="alert {{class}}">
-            {{msg}}    
-        </div>
-        {% endif %}
-        
-        <input class="form-control mt-4" type="text" name="nameJob" id="nameJob" placeholder="Nome da vaga de emprego:">
+<div class="col-6 mt-4 m-auto">
+    <form name="createVaga" id="createVaga" method="post" action="/lista_vagas/">
+        {% csrf_token %}
+        <input class="form-control mt-4" type="text" name="nameJob" id="nameJob" placeholder="Nome da vaga de emprego:" value="{{ createVagaForm }}">
         <br>
-        <select id=cbFaixaSalarial>
-        <option>R$1.000</option>
-        <option>R$1.000 a R$2.000</option>
-        <option>R$2.000 a R$3.000</option>
-        <option>Acima de R$3.000</option>
+        <br>
+        <select id=cbFaixaSalarial name="cbFaixaSalarial">
+            {%for cbFaixaSalarial in FAIXA_SALARIAL_CHOICE %}
+                <option value = "{{ createFaixaSalarialChoice }}">{{ createFaixaSalarialChoice }}</option>
+            {%endfor%}
         </select>
         <br>
         <br>
-        <select id="cbEscolaridade">
-        <option>Ensino fundamental</option>
-        <option>Ensino médio</option>
-        <option>Tecnólogo</option>
-        <option>Ensino Superior</option>
-        <option>Pós/MBA/Mestrado</option>
-        <option>Doutorado</option>
-        </select>
-        <br>
-        <input class="btn btn-primary mt-4" type="submit" value="Cadastrar">
-    </div>
-</form>
+        <input class="btn btn-success mt-4" type="submit" value="Cadastrar">
+    </form>
+</div>
 
 {% endblock %}
+

@@ -1,10 +1,11 @@
+from multiprocessing import context
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
-from .forms import createVagaForm
+from .forms import createFaixaSalarialChoice, createVagaForm
 from .models import vagaDeEmprego
-
+from django.template import RequestContext
 
 def home(request):
     return render(request, 'home.html')
@@ -55,34 +56,23 @@ def changePassword(request):
     return redirect('/painel/')
 
 def createVaga(request):
-    context = {}
-    form = createVagaForm(request.POST or None)
-    if form.is_valid():
-        form.save()
+    data = {}
+    data['createVaga'] = createVagaForm()
+    return render(request, 'createVaga.html', data)
 
-    context['form'] = form 
-    return render(request, "createVaga.html", context)
+def createVagaSalarial(request):
+    data = {}
+    cbFaixaSalarial = createFaixaSalarialChoice()
+    data['cbFaixaSalarial'] = cbFaixaSalarial
+    if request.GET:
+        temp = request.GET['cbFaixaSalarial']
+        print(temp)
+    return render(request, "home.html", data)
 
 def lista_vagas(request):
-    context = {}
-    context["dataset"] = vagaDeEmprego.objects.all()
-    return render(request, "lista_vagas.html", context)
-
-
-
-#def createVaga(request):
-#    if request.method == "POST":
-#        form = createVagaForm(request.POST)
-#        if form.is_valid():
-#            cd = form.cleaned_data
-#            pc = vagaDeEmprego(
-#                nameJob = cd['nameJob'],
-#                cbFaixaSalarial = cd['cbFaixaSalarial'],
-#                cbEscolaridade = cd['cbEscolaridade']
-#                )
-#            data = {}
-#            data['msg'] = 'Usuário cadastrado com sucesso!'
-#            data['class'] = 'alert-success'
-#            pc.save()
-#    return render(request, 'createVaga.html')
+    createVaga = createVagaForm(request.POST or None)
+    if createVaga.is_valid():
+        createVaga.save()
+    return redirect('home')
+        
             
