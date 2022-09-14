@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
-from .forms import createFaixaSalarialChoice, createVagaForm
+from .forms import createFaixaSalarialChoice, createNivelEscolarChoice, createVagaForm
 from .models import vagaDeEmprego
 from django.template import RequestContext
 
@@ -66,7 +66,14 @@ def createVagaSalarial(request):
     data['cbFaixaSalarial'] = cbFaixaSalarial
     if request.GET:
         temp = request.GET['cbFaixaSalarial']
-        print(temp)
+    return render(request, "home.html", data)
+
+def createNivelEscolar(request):
+    data = {}
+    cbEscolaridade = createNivelEscolarChoice()
+    data['cbEscolaridade'] = cbEscolaridade
+    if request.GET:
+        temp = request.GET['cbEscolaridade']
     return render(request, "home.html", data)
 
 def lista_vagas(request):

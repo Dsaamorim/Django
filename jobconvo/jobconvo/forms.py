@@ -9,7 +9,7 @@ class createVagaForm(ModelForm):
         fields = [
         "nameJob",
         "cbFaixaSalarial",
-
+        "cbEscolaridade",
     ]
 
 FAIXA_SALARIAL_CHOICE = (
@@ -19,8 +19,21 @@ FAIXA_SALARIAL_CHOICE = (
     (('faixa4','Acima de R$3.000')),
     )
 
+NIVEL_ESCOLAR_CHOICE = (
+    (('faixa5', 'Ensino fundamental')),
+    (('faixa6', 'Ensino médio')),
+    (('faixa7', 'Tecnólogo')),
+    (('faixa8', 'Ensino Superior')),
+    (('faixa9', 'Pós/MBA/Mestrado')),
+    (('faixa10', 'Doutorado')),
+    )
+
 class createFaixaSalarialChoice(ModelForm):
     cbFaixaSalarial = forms.ChoiceField(choices=FAIXA_SALARIAL_CHOICE)
+
+class createNivelEscolarChoice(ModelForm):
+    cbEscolaridade = forms.ChoiceField(choices=NIVEL_ESCOLAR_CHOICE)
+
 
 
 

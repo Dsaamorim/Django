@@ -9,7 +9,18 @@ FAIXA_SALARIAL_CHOICE = (
     (('faixa4','Acima de R$3.000')),
     )
 
+NIVEL_ESCOLAR_CHOICE = (
+    (('faixa5', 'Ensino fundamental')),
+    (('faixa6', 'Ensino médio')),
+    (('faixa7', 'Tecnólogo')),
+    (('faixa8', 'Ensino Superior')),
+    (('faixa9', 'Pós/MBA/Mestrado')),
+    (('faixa10', 'Doutorado')),
+    )
+
 class vagaDeEmprego(models.Model):
     nameJob = models.CharField(max_length=200)
     cbFaixaSalarial = models.CharField(max_length=25, choices=FAIXA_SALARIAL_CHOICE)
+    cbEscolaridade = models.CharField(max_length=25, choices=NIVEL_ESCOLAR_CHOICE)
+
 
