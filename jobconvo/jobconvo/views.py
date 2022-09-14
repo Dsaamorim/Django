@@ -71,6 +71,7 @@ def createVagaSalarial(request):
 
 def lista_vagas(request):
     createVaga = createVagaForm(request.POST or None)
+    print(createVaga)
     if createVaga.is_valid():
         createVaga.save()
     return redirect('home')

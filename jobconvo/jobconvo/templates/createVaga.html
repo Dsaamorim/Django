@@ -10,10 +10,11 @@
         <input class="form-control mt-4" type="text" name="nameJob" id="nameJob" placeholder="Nome da vaga de emprego:" value="{{ createVagaForm }}">
         <br>
         <br>
-        <select id=cbFaixaSalarial name="cbFaixaSalarial">
-            {%for cbFaixaSalarial in FAIXA_SALARIAL_CHOICE %}
-                <option value = "{{ createFaixaSalarialChoice }}">{{ createFaixaSalarialChoice }}</option>
-            {%endfor%}
+        <select name="cbFaixaSalarial">
+            <option value="faixa1">R$1.000</option>
+            <option value="faixa2">R$1.000 a R$2.000</option>
+            <option value="faixa3">R$2.000 a R$3.000</option>
+            <option value="faixa4">Acima de R$3.000</option>
         </select>
         <br>
         <br>

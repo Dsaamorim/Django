@@ -8,6 +8,7 @@ class createVagaForm(ModelForm):
         model = vagaDeEmprego
         fields = [
         "nameJob",
+        "cbFaixaSalarial",
 
     ]
 
