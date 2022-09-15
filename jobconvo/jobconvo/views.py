@@ -56,9 +56,16 @@ def changePassword(request):
     return redirect('/painel/')
 
 def createVaga(request):
-    data = {}
-    data['createVaga'] = createVagaForm()
-    return render(request, 'createVaga.html', data)
+    data = {}    
+    if request.method == 'GET':
+        form = createVagaForm() 
+    else:
+        form = createVagaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/lista_vagas/')
+    data['form'] = form
+    return render(request, "createVaga.html", data)
 
 def createVagaSalarial(request):
     data = {}
@@ -77,10 +84,16 @@ def createNivelEscolar(request):
     return render(request, "home.html", data)
 
 def lista_vagas(request):
-    createVaga = createVagaForm(request.POST or None)
-    print(createVaga)
-    if createVaga.is_valid():
-        createVaga.save()
-    return redirect('home')
+    data = {}
+    vagas = vagaDeEmprego.objects.all()
+    data['vagas'] = vagas
+    return render(request, "lista_vagas.html", data)
+
+def detalhe_vaga(request, pk):
+    data = {}
+    data['vagas'] = vagaDeEmprego.objects.get(pk=pk)
+    return render(request, "detalhe_vaga.html", data)
+
+
         
             

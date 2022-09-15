@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+<body>
+  <div class="col-8 m-auto pt-2 pb-2 text-center"> 
+      <h1 class="text-white bg-dark">Visualização</h1>
+  </div>
+    <div class="col-8 m-auto pt-3 pb-2 text-center">
+      <a href="javascript:void(0)" onClick="history.go(-1); return false;" class="btn btn-info">Voltar</a>
+    </div>
+      <div class="col-8 m-auto pt-4 pb-2 text-center">
+          <strong class="text-white bg-dark">ID: {{vagas.id}}</strong>
+          <br>
+          <strong class="text-white bg-dark">Nome da Vaga: {{vagas.nameJob}}</strong>
+          <br>
+          <strong class="text-white bg-dark">Faixa Salarial: {{vagas.get_cbFaixaSalarial_display}}</strong>
+          <br>
+          <strong class="text-white bg-dark">Escolaridade: {{vagas.get_cbEscolaridade_display}}</strong>
+          <br>
+      </div>
+</body>
+
+{% endblock %}

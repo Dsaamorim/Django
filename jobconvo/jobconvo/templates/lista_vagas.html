@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+<table class="table">
+    <thead class="thead-light">
+      <tr class="text-white bg-dark">
+        <th scope="col">#</th>
+        <th scope="col">Nome da vaga:</th>
+        <th scope="col">Faixa Salarial:</th>
+        <th scope="col">Escolaridade</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for vaga in vagas %}
+     <tr class="text-white bg-dark">
+        <th>{{vaga.id}}</th>
+        <td>{{vaga.nameJob}}</td>
+        {{vaga.get_nameJob_display}}
+        <td>{{vaga.get_cbFaixaSalarial_display}}</td>
+        <td>{{vaga.get_cbEscolaridade_display}}</td>
+        <td>
+            <a href="/detalhe_vaga/{{vaga.id}}" class="btn btn-dark">Visualizar</a>
+            <a href="" class="btn btn-primary">Editar</a>
+            <a href="" class="btn btn-danger">Deletar</a>
+        </td>
+      </tr>
+    {% endfor %} 
+    </tbody>
+  </table
+
+{% endblock %}
