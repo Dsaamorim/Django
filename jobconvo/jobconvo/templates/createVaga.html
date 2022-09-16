@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="col-6 mt-4 m-auto">
-    <form name="createVaga" id="createVaga" method="post" action="/createVaga/">
+    <form name="createVaga" id="createVaga" method="post" action="{% if vagas %}/update/{{vagas.id}}/{%else%}/createVaga/{% endif %}">
         {% csrf_token %}
         <input class="form-control mt-4" type="text" name="nameJob" id="nameJob" placeholder="Nome da vaga de emprego:" value="{{ createVagaForm }}">
         <br>

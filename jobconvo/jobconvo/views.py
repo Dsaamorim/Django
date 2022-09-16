@@ -94,6 +94,18 @@ def detalhe_vaga(request, pk):
     data['vagas'] = vagaDeEmprego.objects.get(pk=pk)
     return render(request, "detalhe_vaga.html", data)
 
+def edit(request, pk):
+    data = {}
+    data['vagas'] = vagaDeEmprego.objects.get(pk=pk)
+    data['form'] = createVagaForm(instance=data['vagas'])
+    return render(request, "createVaga.html", data)
 
+def update(request, pk):
+    data = {}
+    data['vagas'] = vagaDeEmprego.objects.get(pk=pk)
+    form = createVagaForm(request.POST or None, instance=data['vagas'])
+    if form.is_valid():
+        form.save()
+        return redirect('/lista_vagas/')
         
             

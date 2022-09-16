@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from jobconvo.views import lista_vagas
-from jobconvo.views import home, create, store, painel, dologin, dashboard, logouts, changePassword, createVaga, createVagaSalarial, createNivelEscolar, lista_vagas, detalhe_vaga
+from jobconvo.views import home, create, store, painel, dologin, dashboard, logouts, changePassword, createVaga, createVagaSalarial, createNivelEscolar, lista_vagas, detalhe_vaga, edit, update
 from django.urls import path
 
 urlpatterns = [
@@ -19,4 +19,6 @@ urlpatterns = [
     path('createVagaSalarial/',createVagaSalarial, name = 'createVagaSalarial'),
     path('createNivelEscolar/',createNivelEscolar, name = 'createNivelEscolar'),
     path('detalhe_vaga/<int:pk>/',detalhe_vaga, name = 'detalhe_vaga'),
+    path('edit/<int:pk>/',edit, name = 'edit'),
+    path('update/<int:pk>/',update, name = 'update'),
 ]
