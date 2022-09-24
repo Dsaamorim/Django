@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate,login,logout
 from .forms import createFaixaSalarialChoice, createNivelEscolarChoice, createVagaForm
 from .models import vagaDeEmprego
 from django.template import RequestContext
+from django.core.paginator import Paginator
 
 def home(request):
     return render(request, 'home.html')
@@ -85,8 +86,15 @@ def createNivelEscolar(request):
 
 def lista_vagas(request):
     data = {}
-    vagas = vagaDeEmprego.objects.all()
-    data['vagas'] = vagas
+    all = vagaDeEmprego.objects.all()
+    paginator = Paginator(all, 2)
+    pages = request.GET.get('page')
+    data['vagas'] = paginator.get_page(pages)
+    #search = request.GET.get('search')
+    #if search:
+    #    data['vagas'] = vagaDeEmprego.objects.filter(nameJob__icontains=search)
+    #else:
+    #    data['vagas'] = vagaDeEmprego.objects.all()
     return render(request, "lista_vagas.html", data)
 
 def detalhe_vaga(request, pk):
@@ -107,5 +115,11 @@ def update(request, pk):
     if form.is_valid():
         form.save()
         return redirect('/lista_vagas/')
+
+def delete(request, pk):
+    vagas = vagaDeEmprego.objects.get(pk=pk)
+    vagas.delete()
+    return redirect('lista_vagas')
+
         
             
